@@ -31,6 +31,8 @@ li {
   border-radius: 5px;
 }
 .fakeTemp {
+  position: relative;
+  bottom: -20px;
   color: rgb(33, 33, 33);
   font-size: 64px;
   font-weight: 400;
@@ -39,5 +41,5 @@ li {
 .units {
   position: relative;
   font-size: 16px;
-  top: -34px;
+  top: -16px;
 }
