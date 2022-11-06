@@ -20,6 +20,18 @@ function formatDate(timestamp) {
   let day = days[date.getDay()];
   return `${day} ${hours}:${minutes}`;
 }
+function search(city) {
+  let apikey = "333f5814fa63dat5670a0o088cabaaaf";
+
+  let apiUrl = ` https://api.shecodes.io/weather/v1/current?query=${city}&key=${apikey}&units=metric`;
+  axios.get(apiUrl).then(displayTemperature);
+}
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+}
+
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
   let cityElement = document.querySelector("#city");
@@ -42,7 +54,5 @@ function displayTemperature(response) {
   );
   iconElement.setAttribute("alt", response.data.condition.icon);
 }
-let apikey = "333f5814fa63dat5670a0o088cabaaaf";
-
-let apiUrl = ` https://api.shecodes.io/weather/v1/current?query=Boston&key=333f5814fa63dat5670a0o088cabaaaf&units=metric`;
-axios.get(apiUrl).then(displayTemperature);
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
