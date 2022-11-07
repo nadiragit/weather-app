@@ -1,5 +1,9 @@
 body {
   font-family: Arial, sans-serif;
+  background-color: rgb(193, 222, 244);
+}
+.weather-app {
+  background-color: aliceblue;
 }
 h1 {
   color: #878787;
