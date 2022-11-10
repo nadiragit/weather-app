@@ -1,6 +1,10 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: rgb(193, 222, 244);
+  background: radial-gradient(
+    592px at 48.2% 50%,
+    rgba(255, 255, 249, 0.6) 0%,
+    rgb(160, 199, 254) 74.6%
+  );
 }
 .weather-app {
   background-color: aliceblue;
@@ -38,6 +42,7 @@ li::first-letter {
   padding: 20px;
   border: 1px solid #dadde1;
   border-radius: 5px;
+  box-shadow: 5px 5px 10px rgb(0 0 0 / 60%);
 }
 strong {
   position: relative;

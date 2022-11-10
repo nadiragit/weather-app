@@ -23,7 +23,7 @@ function formatDate(timestamp) {
 function search(city) {
   let apikey = "333f5814fa63dat5670a0o088cabaaaf";
 
-  let apiUrl = ` https://api.shecodes.io/weather/v1/current?query=${city}&key=${apikey}&units=metric`;
+  let apiUrl = ` https://api.shecodes.io/weather/v1/current?query=${city}&key=${apikey}&units=imperial`;
   axios.get(apiUrl).then(displayTemperature);
 }
 function handleSubmit(event) {
@@ -31,20 +31,20 @@ function handleSubmit(event) {
   let cityInputElement = document.querySelector("#city-input");
   search(cityInputElement.value);
 }
-function displayFahrenheitTemperature(event) {
-  event.preventDefault();
-  celsuisLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-  let temperatureElement = document.querySelector("#temperature");
-  let fahrenheitTemperature = (celsuisTemperature * 9) / 5 + 32;
-  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-}
 function displayCelsuisTemperature(event) {
   event.preventDefault();
   celsuisLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
   let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(celsuisTemperature);
+  let celsiusTemperature = ((fahrenheitTemperature - 32) * 5) / 9;
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  celsuisLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 }
 
 function displayTemperature(response) {
@@ -55,9 +55,9 @@ function displayTemperature(response) {
   let speedElement = document.querySelector("#wind");
   let dateElement = document.querySelector("#date");
   let iconElement = document.querySelector("#icon");
-  celsuisTemperature = response.data.temperature.current;
+  fahrenheitTemperature = response.data.temperature.current;
   humidityElement.innerHTML = Math.round(response.data.temperature.humidity);
-  temperatureElement.innerHTML = Math.round(celsuisTemperature);
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
   speedElement.innerHTML = Math.round(response.data.wind.speed);
 
   cityElement.innerHTML = response.data.city;
@@ -69,7 +69,7 @@ function displayTemperature(response) {
   );
   iconElement.setAttribute("alt", response.data.condition.icon);
 }
-let celsuisTemperature = null;
+let fahrenheitTemperature = null;
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
